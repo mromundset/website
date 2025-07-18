@@ -44,7 +44,7 @@
         <section id="experiences" class="experiences">
             <h2>Highlighted Experiences</h2>
             <div class="experience-list">
-                <div class="experience-item">
+                <div class="experience-item dropdown-container">
                     <div class="experience-header">
                         <a href="https://dualog.com/" class="company-link" target="_blank" rel="noopener">
                             Dualog
@@ -56,10 +56,14 @@
                         </button>
                     </div>
                     <div class="experience-details" id="details-1">
-                        <p>Your expandable content goes here. Describe your role, responsibilities, and achievements.</p>
+                        <ul class="bullet-points">
+                            <li>Your first bullet point from resume for Dualog.</li>
+                            <li>Your second bullet point from resume for Dualog.</li>
+                            <li>Your third bullet point from resume for Dualog.</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="experience-item">
+                <div class="experience-item dropdown-container">
                     <div class="experience-header">
                         <a href="#" class="company-link" target="_blank" rel="noopener">
                             NVIDIA
@@ -71,7 +75,11 @@
                         </button>
                     </div>
                     <div class="experience-details" id="details-2">
-                        <p>Your expandable content goes here. Describe your role, responsibilities, and achievements.</p>
+                        <ul class="bullet-points">
+                            <li>Your first bullet point from resume for NVIDIA.</li>
+                            <li>Your second bullet point from resume for NVIDIA.</li>
+                            <li>Your third bullet point from resume for NVIDIA.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -136,15 +144,18 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
-        
-        const applyTheme = (theme) => {
+        const twinklingStarsContainer = document.getElementById('twinkling-stars');
+        const shootingStarsContainer = document.getElementById('shooting-stars');
+
+        function applyTheme(theme) {
             if (theme === 'light') {
                 body.dataset.theme = 'light';
             } else {
                 body.removeAttribute('data-theme');
             }
             localStorage.setItem('theme', theme);
-        };
+            manageTwinklingStars(); // integrate here
+        }
 
         themeToggle.addEventListener('click', () => {
             const newTheme = body.dataset.theme ? 'dark' : 'light';
@@ -162,78 +173,125 @@
             applyTheme(prefersLight.matches ? 'light' : 'dark');
         }
 
-        document.querySelectorAll('.expand-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const details = button.closest('.experience-header').nextElementSibling;
-                const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                button.setAttribute('aria-expanded', !isExpanded);
-                details.style.maxHeight = isExpanded ? null : details.scrollHeight + 'px';
-                button.closest('.experience-item').classList.toggle('active');
-            });
-        });
-
-        const twinklingStarsContainer = document.getElementById('twinkling-stars');
-        const createTwinklingStars = (count) => {
+        /* ---------- STAR FIELD ---------- */
+        function createTwinklingStars(count) {
+            // Only create once
+            if (twinklingStarsContainer.children.length > 0) return;
+            const frag = document.createDocumentFragment();
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 const size = Math.random() * 2 + 1;
-                star.classList.add('star');
+                star.className = 'star';
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.top = `${Math.random() * 100}%`;
                 star.style.left = `${Math.random() * 100}%`;
-                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                twinklingStarsContainer.appendChild(star);
+                star.style.animationDuration = `${(Math.random() * 3 + 2).toFixed(2)}s`;
+                star.style.animationDelay = `${(Math.random() * 3).toFixed(2)}s`;
+                frag.appendChild(star);
             }
-        };
+            twinklingStarsContainer.appendChild(frag);
+        }
 
-        const manageTwinklingStars = () => {
-            if (document.body.dataset.theme !== 'light') {
-                if (twinklingStarsContainer.children.length === 0) {
-                    createTwinklingStars(150);
-                }
+        function manageTwinklingStars() {
+            const darkModeActive = !body.dataset.theme || body.dataset.theme === 'dark';
+            if (darkModeActive) {
+                createTwinklingStars(150);
             } else {
-                twinklingStarsContainer.innerHTML = '';
+                twinklingStarsContainer.textContent = '';
             }
-        };
+        }
 
-        const originalApplyTheme = applyTheme;
-        applyTheme = (theme) => {
-            originalApplyTheme(theme);
-            manageTwinklingStars();
-        };
-        
-        manageTwinklingStars();
-
-        const shootingStarsContainer = document.getElementById('shooting-stars');
-        const manageStars = () => {
-            if (document.body.dataset.theme !== 'light') {
-                const star = document.createElement('div');
-                star.classList.add('shooting-star');
-
-                const startX = Math.random() * window.innerWidth;
-                const startY = -150;
-                const endX = Math.random() * window.innerWidth;
-                const endY = window.innerHeight + 150;
-
-                const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-                const duration = Math.random() * 2 + 1;
-
-                star.style.setProperty('--angle', `${angle + 90}deg`);
-                star.style.setProperty('--start-x', `${startX}px`);
-                star.style.setProperty('--start-y', `${startY}px`);
-                star.style.setProperty('--end-x', `${endX}px`);
-                star.style.setProperty('--end-y', `${endY}px`);
-                star.style.animationDuration = `${duration}s`;
-
-                shootingStarsContainer.appendChild(star);
-                setTimeout(() => star.remove(), duration * 1000);
+        function spawnShootingStar() {
+            const darkModeActive = !body.dataset.theme || body.dataset.theme === 'dark';
+            if (!darkModeActive) {
+                setTimeout(spawnShootingStar, 8000);
+                return;
             }
-            const randomInterval = Math.random() * 15000 + 5000; // 5-20 seconds
-            setTimeout(manageStars, randomInterval);
-        };
-        manageStars();
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            const startX = Math.random() * window.innerWidth;
+            const startY = -150;
+            const endX = Math.random() * window.innerWidth;
+            const endY = window.innerHeight + 150;
+            const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+            const duration = Math.random() * 2 + 1;
+
+            star.style.setProperty('--angle', `${angle + 90}deg`);
+            star.style.setProperty('--start-x', `${startX}px`);
+            star.style.setProperty('--start-y', `${startY}px`);
+            star.style.setProperty('--end-x', `${endX}px`);
+            star.style.setProperty('--end-y', `${endY}px`);
+            star.style.animationDuration = `${duration}s`;
+
+            shootingStarsContainer.appendChild(star);
+            setTimeout(() => star.remove(), duration * 1000);
+
+            const randomInterval = Math.random() * 15000 + 5000; // 5–20s
+            setTimeout(spawnShootingStar, randomInterval);
+        }
+        spawnShootingStar();
+
+        /* ---------- DROPDOWN LOGIC (Simplified) ---------- */
+
+        function togglePanel(button) {
+            const isTopLevel = !!button.closest('.experience-header');
+            let contentElement;
+            if (isTopLevel) {
+                contentElement = button.closest('.experience-header').nextElementSibling;
+            } else {
+                contentElement = button.nextElementSibling;
+            }
+            if (!contentElement) return;
+
+            const expanded = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', String(!expanded));
+            button.classList.toggle('expanded', !expanded); // rotate icon via CSS
+
+            if (!expanded) {
+                // EXPAND
+                contentElement.style.maxHeight = 'none'; // reset to measure
+                const full = contentElement.scrollHeight;
+                contentElement.style.maxHeight = '0px';
+                // force reflow
+                contentElement.offsetHeight;
+                contentElement.style.maxHeight = full + 'px';
+                adjustAncestorHeights(contentElement);
+            } else {
+                // COLLAPSE
+                const current = contentElement.scrollHeight;
+                contentElement.style.maxHeight = current + 'px';
+                requestAnimationFrame(() => {
+                    contentElement.style.maxHeight = '0px';
+                    adjustAncestorHeights(contentElement);
+                });
+            }
+        }
+
+        function adjustAncestorHeights(el) {
+            // Walk up and expand heights of any open ancestor panels
+            let ancestor = el.parentElement.closest('.experience-details');
+            while (ancestor) {
+                if (ancestor.style.maxHeight && ancestor.style.maxHeight !== '0px') {
+                    ancestor.style.maxHeight = 'none';
+                    const h = ancestor.scrollHeight;
+                    ancestor.style.maxHeight = h + 'px';
+                }
+                ancestor = ancestor.parentElement.closest('.experience-details');
+            }
+        }
+
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => togglePanel(btn));
+        });
+
+        // INITIAL state: ensure all panels collapsed
+        document.querySelectorAll('.experience-details').forEach(p => {
+            p.style.maxHeight = '0px';
+            p.style.overflow = 'hidden';
+            p.style.transition = 'max-height 0.4s ease';
+        });
+
     </script>
 </body>
 </html>

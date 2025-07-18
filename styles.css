@@ -42,6 +42,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0; /* Added to ensure full width */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -102,6 +103,7 @@ a {
     background-repeat: no-repeat;
     background-size: 0% 2px;
     transition: background-size .25s ease;
+    padding-bottom: 3px; /* Add space below text */
 }
 
 a:hover, a:focus {
@@ -186,7 +188,7 @@ a:hover, a:focus {
     align-items: center;
     transition: transform 0.25s ease, color 0.25s ease;
 }
-.experience-item.active .expand-btn {
+.dropdown-container.active-dropdown > .expand-btn {
     transform: rotate(180deg);
 }
 .experience-details {
@@ -198,6 +200,30 @@ a:hover, a:focus {
 .experience-details p {
     padding-bottom: 1rem;
 }
+
+.bullet-points {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.bullet-points li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    color: var(--clr-muted);
+}
+
+.bullet-points li::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    background-color: var(--clr-accent);
+    border-radius: 50%;
+}
+
 .experience-header .expand-btn:hover {
     color: var(--clr-accent);
 }
@@ -291,7 +317,7 @@ a:hover, a:focus {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: -2;
+    z-index: 0;
 }
 
 .star {
@@ -343,7 +369,14 @@ a:hover, a:focus {
     color: var(--clr-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-right: auto;
+}
+
+.project-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Adjust gap as needed */
+    justify-content: center; /* Center items within the nav */
+    width: 100%; /* Ensure it takes full width to center its content */
 }
 
 .project-content {
@@ -365,3 +398,91 @@ a:hover, a:focus {
         scroll-behavior: auto !important;
     }
 }
+/* Star layers */
+#twinkling-stars,
+#shooting-stars {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0; /* ensure below main content */
+}
+
+body {
+
+/* Ensure site header/content sits above */
+.site-header {
+
+/* Individual stars */
+.star {
+    position: absolute;
+    background: radial-gradient(circle, #ffffff 0%, #ffffff 40%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.6); }
+}
+
+/* Shooting star */
+.shooting-star {
+    position: absolute;
+    top: var(--start-y);
+    left: var(--start-x);
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    transform-origin: top left;
+    transform: rotate(var(--angle));
+    animation: shoot linear forwards;
+    filter: drop-shadow(0 0 6px #fff);
+}
+
+@keyframes shoot {
+    from { transform: translate(0,0) rotate(var(--angle)); opacity: 1; }
+    to   { transform: translate(
+              calc(var(--end-x) - var(--start-x)),
+              calc(var(--end-y) - var(--start-y))
+           ) rotate(var(--angle));
+           opacity: 0; }
+}
+
+/* Light mode: hide stars (JS also removes) */
+body[data-theme="light"] #twinkling-stars,
+body[data-theme="light"] #shooting-stars {
+    display: none;
+}
+
+/* Dropdown panels */
+.experience-details,
+.picture-details {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+}
+
+/* Arrow rotation: apply only to the SVG inside the button */
+.expand-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.expand-btn.expanded svg {
+    transform: rotate(180deg);
+}
+
+/* Optional: keep layout stable while animating */
+.experience-item,
+.picture-dropdown {
+    position: relative;
+}
+
+/* (If you previously had transforms on .active-dropdown, remove them) */
+.dropdown-container.active-dropdown {
+    /* Remove any transform/rotation here if present before */
+}
+
