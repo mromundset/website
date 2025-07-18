@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <noscript><style>#theme-toggle { display: none; }</style></noscript>
+</head>
+<body>
+    <div id="twinkling-stars"></div>
+    <div id="shooting-stars"></div>
+    <header class="site-header">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#coursework">Coursework</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="hero" class="hero">
+            <h1>Marcus Romundset</h1>
+            <h2>B.A. Computer Science & Economics at UC Berkeley</h2>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About</h2>
+            <p>A brief and compelling bio of about 60 words. This is where you introduce yourself, your passion, and your key skills. Keep it concise and engaging to capture the visitor's interest right away and give them a reason to explore the rest of your site.</p>
+        </section>
+
+        <section id="experiences" class="experiences">
+            <h2>Highlighted Experiences</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <a href="https://dualog.com/" class="company-link" target="_blank" rel="noopener">
+                            Dualog
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        </a>
+                        <span class="job-title">Product Management Intern</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="experience-details" id="details-1">
+                        <p>Your expandable content goes here. Describe your role, responsibilities, and achievements.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <a href="#" class="company-link" target="_blank" rel="noopener">
+                            NVIDIA
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        </a>
+                        <span class="job-title">Project Manager - GPU Forecasting</span>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="experience-details" id="details-2">
+                        <p>Your expandable content goes here. Describe your role, responsibilities, and achievements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <div class="project-list">
+                <div class="project-item">
+                    <h3>
+                        <a href="project.html">
+                            Project Alpha
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        </a>
+                    </h3>
+                    <p class="project-overview">A short, one-sentence blurb describing this amazing project.</p>
+                    <div class="technologies">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        <span>JavaScript, React, Node.js</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <h3>
+                        <a href="project.html">
+                            Project Beta
+                            <svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+                        </a>
+                    </h3>
+                    <p class="project-overview">A short, one-sentence blurb describing this amazing project.</p>
+                    <div class="technologies">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        <span>Python, Flask, PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="coursework" class="coursework">
+            <h2>Coursework</h2>
+            <ul class="courses">
+                <li><span>CS 70&nbsp;—&nbsp;Probability &amp; Discrete Math</span></li>
+                <li><span>CS 61A&nbsp;—&nbsp;Structure &amp; Interpretation of Computer Programs</span></li>
+                <li><span>DATA 100&nbsp;—&nbsp;Principles &amp; Techniques of Data Science</span></li>
+            </ul>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <a href="mailto:your.email@example.com" class="email-link">your.email@example.com</a>
+            <div class="socials">
+                <a href="#" aria-label="GitHub Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn Profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.dataset.theme = 'light';
+            } else {
+                body.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+        };
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.dataset.theme ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+
+        prefersLight.addEventListener('change', (e) => {
+            applyTheme(e.matches ? 'light' : 'dark');
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersLight.matches ? 'light' : 'dark');
+        }
+
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.closest('.experience-header').nextElementSibling;
+                const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !isExpanded);
+                details.style.maxHeight = isExpanded ? null : details.scrollHeight + 'px';
+                button.closest('.experience-item').classList.toggle('active');
+            });
+        });
+
+        const twinklingStarsContainer = document.getElementById('twinkling-stars');
+        const createTwinklingStars = (count) => {
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const size = Math.random() * 2 + 1;
+                star.classList.add('star');
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                twinklingStarsContainer.appendChild(star);
+            }
+        };
+
+        const manageTwinklingStars = () => {
+            if (document.body.dataset.theme !== 'light') {
+                if (twinklingStarsContainer.children.length === 0) {
+                    createTwinklingStars(150);
+                }
+            } else {
+                twinklingStarsContainer.innerHTML = '';
+            }
+        };
+
+        const originalApplyTheme = applyTheme;
+        applyTheme = (theme) => {
+            originalApplyTheme(theme);
+            manageTwinklingStars();
+        };
+        
+        manageTwinklingStars();
+
+        const shootingStarsContainer = document.getElementById('shooting-stars');
+        const manageStars = () => {
+            if (document.body.dataset.theme !== 'light') {
+                const star = document.createElement('div');
+                star.classList.add('shooting-star');
+
+                const startX = Math.random() * window.innerWidth;
+                const startY = -150;
+                const endX = Math.random() * window.innerWidth;
+                const endY = window.innerHeight + 150;
+
+                const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+                const duration = Math.random() * 2 + 1;
+
+                star.style.setProperty('--angle', `${angle + 90}deg`);
+                star.style.setProperty('--start-x', `${startX}px`);
+                star.style.setProperty('--start-y', `${startY}px`);
+                star.style.setProperty('--end-x', `${endX}px`);
+                star.style.setProperty('--end-y', `${endY}px`);
+                star.style.animationDuration = `${duration}s`;
+
+                shootingStarsContainer.appendChild(star);
+                setTimeout(() => star.remove(), duration * 1000);
+            }
+            const randomInterval = Math.random() * 15000 + 5000; // 5-20 seconds
+            setTimeout(manageStars, randomInterval);
+        };
+        manageStars();
+    </script>
+</body>
+</html>

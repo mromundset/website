@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="twinkling-stars"></div>
+    <header class="site-header">
+        <a href="index.html" class="back-button">&larr; Back</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+    </header>
+    <main>
+        <section class="project-content">
+            <!-- You can paste your project content here -->
+            <h1>Project Title</h1>
+            <p>This is a placeholder for your detailed project description. You can add images, videos, and more here.</p>
+        </section>
+    </main>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)');
+        
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                body.dataset.theme = 'light';
+            } else {
+                body.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+        };
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.dataset.theme ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+
+        prefersLight.addEventListener('change', (e) => {
+            applyTheme(e.matches ? 'light' : 'dark');
+        });
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersLight.matches ? 'light' : 'dark');
+        }
+
+        const twinklingStarsContainer = document.getElementById('twinkling-stars');
+        const createTwinklingStars = (count) => {
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                const size = Math.random() * 2 + 1;
+                star.classList.add('star');
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                twinklingStarsContainer.appendChild(star);
+            }
+        };
+
+        const manageTwinklingStars = () => {
+            if (document.body.dataset.theme !== 'light') {
+                if (twinklingStarsContainer.children.length === 0) {
+                    createTwinklingStars(150);
+                }
+            } else {
+                twinklingStarsContainer.innerHTML = '';
+            }
+        };
+
+        const originalApplyTheme = applyTheme;
+        applyTheme = (theme) => {
+            originalApplyTheme(theme);
+            manageTwinklingStars();
+        };
+        
+        manageTwinklingStars();
+    </script>
+</body>
+</html>
