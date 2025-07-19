@@ -26,6 +26,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem; /* Offset for fixed header */
+    zoom: 0.8;
 }
 
 body {
@@ -298,7 +299,7 @@ a:hover, a:focus {
 .courses span {
     display: inline-block;
     padding-bottom: 0.25rem;
-    border-bottom: 1px solid var(--clr-muted);
+    border-bottom: 0px solid var(--clr-muted);
     background-image: linear-gradient(var(--clr-accent), var(--clr-accent));
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -485,4 +486,3 @@ body[data-theme="light"] #shooting-stars {
 .dropdown-container.active-dropdown {
     /* Remove any transform/rotation here if present before */
 }
-
